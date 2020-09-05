@@ -73,20 +73,6 @@ class Posn:
         return (isinstance(other, Posn)) and \
             self.x==other.x and \
             self.y == other.y 
-    
-class BorderedFrame(tkinter.Frame):
-  def __init__(self, master,
-               bordercolor=None,
-               borderleft=0,
-               bordertop=0,
-               borderright=0,
-               borderbottom=0,
-               interiorwidget=tkinter.Frame,
-               **kwargs):
-    tkinter.Frame.__init__(self, master, background=bordercolor, bd=0, highlightthickness=0)
-
-    self.interior = interiorwidget(self, **kwargs)
-    self.interior.pack(padx=(borderleft, borderright), pady=(bordertop, borderbottom))
 
 ## read_puzzle(fname) reads information from fname file and returns the info as 
 ##   Puzzle value.
