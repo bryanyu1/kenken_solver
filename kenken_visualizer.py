@@ -3,6 +3,20 @@
 import time
 import tkinter
 
+class BorderedFrame(tkinter.Frame):
+  def __init__(self, master,
+               bordercolor=None,
+               borderleft=0,
+               bordertop=0,
+               borderright=0,
+               borderbottom=0,
+               interiorwidget=tkinter.Frame,
+               **kwargs):
+    tkinter.Frame.__init__(self, master, background=bordercolor, bd=0, highlightthickness=0)
+
+    self.interior = interiorwidget(self, **kwargs)
+    self.interior.pack(padx=(borderleft, borderright), pady=(bordertop, borderbottom))
+
 def draw_board(puz, root):
     cells = []
     for r in range(puz.size):
@@ -55,7 +69,7 @@ def draw_board(puz, root):
                                           font=('Arial', 12))
                     label.place(x=96 * c + 5, y=96 * r + 5)
                     break
-
+                    
     return cells
 
 def update_board(cells, puz):
